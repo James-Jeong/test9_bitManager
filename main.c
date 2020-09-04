@@ -26,15 +26,16 @@ int getBit(unsigned const char *flag, int bit);
 void toggleBit(unsigned char *flag, int bit);
 void splitWordToBytes(unsigned const short value, unsigned char *high, unsigned char *low);
 void mergeBytesToWord(unsigned const char *high, unsigned const char *low, unsigned short *value);
-void printUnsigned8bitsNumberToBinary(unsigned const short value);
+void printUnsigned8bitsNumberToBinary(unsigned short value);
 
 ///////////////////////////////////////////////////////////////////////////////////////
 /// Main function
 ///////////////////////////////////////////////////////////////////////////////////////
 
 /**
- * @fn int main(int argc, char **argv)
+ * @fn int main()
  * @brief 바이트 정수 관리 API 테스트 프로그램
+ * 8 비트 값의 특정 비트에 0 과 1 만 저장할 수 있다.
  * @return SUCCESS 반환
  */
 int main()
@@ -154,7 +155,7 @@ void setBit(unsigned char *flag, int bit, int value)
 /**
  * @fn int getBit(unsigned const char *flag, int bit)
  * @brief 8 비트 값의 특정 비트 값을 반환하는 함수
- * @param flag 8 비트 값(출력)
+ * @param flag 8 비트 값(입력, 읽기 전용)
  * @param bit 지정할 비트(입력)
  * @return 성공 시 특정 비트 값, 실패 시 FAIL 반환
  */
@@ -193,9 +194,8 @@ void toggleBit(unsigned char *flag, int bit)
 		return;
 	}
 
-	if(bit < 0 || bit > 7)
+	if(checkBitRange(bit) == FAIL)
 	{
-		printf("잘못된 Bit 입력. Bit 범위를 벗어남. (range:0~%d)\n", BYTE_BIT_NUM - 1);
 		return;
 	}
 
@@ -207,7 +207,7 @@ void toggleBit(unsigned char *flag, int bit)
 /**
  * @fn void splitWordToBytes(unsigned const short value, unsigned char *high, unsigned char *low)
  * @brief 16 비트 값을 상위 8 비트, 하위 8 비트 값으로 분리하여 반환하는 함수
- * @param value 분리될 16 비트 값(입력)
+ * @param value 분리될 16 비트 값(입력, 읽기 전용)
  * @param high 상위 8 비트 값(출력)
  * @param low 하위 8 비트 값(출력)
  * @return 반환값 없음
@@ -230,8 +230,8 @@ void splitWordToBytes(unsigned const short value, unsigned char *high, unsigned 
 /**
  * @fn void mergeBytesToWord(unsigned const char *high, unsigned const char *low, unsigned short *value)
  * @brief 8 비트 값 두 개를 입력 받아 16 비트 값으로 변환하여 반환하는 함수
- * @param high 상위 8 비트 값(입력)
- * @param low 하위 8 비트 값(입력)
+ * @param high 상위 8 비트 값(입력, 읽기 전용)
+ * @param low 하위 8 비트 값(입력, 읽기 전용)
  * @param value 변환된 16 비트 값(출력)
  * @return 반환값 없음
  */
@@ -254,7 +254,7 @@ void mergeBytesToWord(unsigned const char *high, unsigned const char *low, unsig
  * @param number 입력받을 정수(입력)
  * @return 반환값 없음
  */
-void printUnsigned8bitsNumberToBinary(unsigned const short value)
+void printUnsigned8bitsNumberToBinary(unsigned short value)
 {
     unsigned int mask = 0x80;
     int loopIndex = 1;
@@ -270,7 +270,7 @@ void printUnsigned8bitsNumberToBinary(unsigned const short value)
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////
-/// Local Static functions
+/// Local Static function
 ///////////////////////////////////////////////////////////////////////////////////////
 
 /**
