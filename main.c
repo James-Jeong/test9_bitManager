@@ -313,8 +313,8 @@ void printUnsigned16bitsNumberToBinary(unsigned short value)
  */
 int checkBitRange(int bit)
 {
-	// bit : 000 ~ 111 -> (1111 1111 1111 1111 1111 1111 1111 1000)(0xfffffff8(hex)) & 0000 ... 111 -> 7(Dec) -> 범위 통과
-	if(((unsigned int)bit & 0xfffffff8) != 0)
+	// bit : 000 ~ 111 -> (1111 1111 1111 1000)(0xfff8(hex)) & 0000 ... 0111 -> 7(Dec) -> 범위 통과
+	if(((unsigned int)bit & 0xfff8) != 0)
 	//if(bit < 0 || value > NUM_OF_BIT)
 	{
 		printf("잘못된 Bit 입력. Bit 범위를 벗어남. (bit:%d, range:0~%d)\n", bit, NUM_OF_BIT - 1);
@@ -333,8 +333,8 @@ int checkBitRange(int bit)
  */
 int checkValueRange(int value)
 {
-	// value : 0 ~ 1 -> (1111 1111 1111 1111 1111 1111 1111 1110)(0xfffffffe(hex)) & 0000 ... 1 -> 1(Dec) -> 범위 통과
-	if(((unsigned int)value & 0xfffffffe) != 0)
+	// value : 0 ~ 1 -> (1111 1111 1111 1110)(0xfffe(hex)) & 0000 ... 0001 -> 1(Dec) -> 범위 통과
+	if(((unsigned int)value & 0xfffe) != 0)
 	//if(value < MIN_VALUE || value > MAX_VALUE)
 	{
 		printf("잘못된 값 입력. 값의 범위를 벗어남. (value:%d, range:%d~%d)\n", value, MIN_VALUE, MAX_VALUE);

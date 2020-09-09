@@ -42,12 +42,12 @@ TEST(bitManagerTest, checkBitAbnormal) {
 
 	// 검사 항목 :  (first - 1), (final + 1) value
 
-	printf("0 이 1 바이트 범위에 속하는지 검사\n");
+	printf("-1 이 1 바이트 범위에 속하는지 검사\n");
 	result = checkBitRange(bit);
 	printf("result : %d\n", result);
 	EXPECT_EQ(FAIL, result);
 
-	printf("\n7 이 1 바이트 범위에 속하는지 검사\n");
+	printf("\n8 이 1 바이트 범위에 속하는지 검사\n");
 	bit = 8;
 	result = checkBitRange(bit);
 	printf("result : %d\n", result);
@@ -55,6 +55,47 @@ TEST(bitManagerTest, checkBitAbnormal) {
 	printf("\n");
 }
 
+// checkValueRange Normal
+TEST(bitManagerTest, checkValueNormal) {
+	printf("\n[checkValueRange Normal test]\n");
+
+	int value = 0, result = 0;
+
+	// 검사 항목 :  first, final value
+
+	printf("0 이 정해진 값의 범위에 속하는지 검사\n");
+	result = checkValueRange(value);
+	printf("result : %d\n", result);
+	EXPECT_EQ(SUCCESS, result);
+
+	printf("\n1 이 정해진 값의 범위에 속하는지 검사\n");
+	value = 1;
+	result = checkValueRange(value);
+	printf("result : %d\n", result);
+	EXPECT_EQ(SUCCESS, result);
+	printf("\n");
+}
+
+// checkValueRange Abnormal
+TEST(bitManagerTest, checkValueAbnormal) {
+	printf("\n[checkValueRange Abnormal test]\n");
+
+	int value = -1, result = 0;
+
+	// 검사 항목 :  (first - 1), (final + 1) value
+
+	printf("-1 이 정해진 값의 범위에 속하는지 검사\n");
+	result = checkValueRange(value);
+	printf("result : %d\n", result);
+	EXPECT_EQ(FAIL, result);
+
+	printf("\n2 가 정해진 값의 범위에 속하는지 검사\n");
+	value = 2;
+	result = checkValueRange(value);
+	printf("result : %d\n", result);
+	EXPECT_EQ(FAIL, result);
+	printf("\n");
+}
 
 // getBit Normal
 TEST(bitManagerTest, getBitNormal) {
