@@ -3,6 +3,11 @@
 
 #include "main.h"
 
+//////////////////////////////////////////////
+/// TEST Local Functions
+//////////////////////////////////////////////
+
+// getBit Normal
 TEST(bitManagerTest, getBitNormal) {
 	printf("\n[getBit Normal test]\n");
 
@@ -25,6 +30,7 @@ TEST(bitManagerTest, getBitNormal) {
 	EXPECT_EQ(1, result);
 }
 
+// getBit Abnormal
 TEST(bitManagerTest, getBitAbnormal) {
 	printf("\n[getBit Abnormal test]\n");
 
@@ -43,6 +49,7 @@ TEST(bitManagerTest, getBitAbnormal) {
 	EXPECT_EQ(-1, result);
 }
 
+// toggleBit Normal
 TEST(bitManagerTest, toggleBitNormal) {
 	printf("\n[toggleBit Normal test]\n");
 
@@ -55,6 +62,7 @@ TEST(bitManagerTest, toggleBitNormal) {
 	EXPECT_EQ(0, getBit(&flag, 1));
 }
 
+// toggleBit Abnormal
 TEST(bitManagerTest, toggleBitAbnormal) {
 	printf("\n[toggleBit Abnormal test]\n");
 
@@ -68,7 +76,7 @@ TEST(bitManagerTest, toggleBitAbnormal) {
 
 
 //////////////////////////////////////////////
-/// TEST Main
+/// TEST Main Function
 //////////////////////////////////////////////
 
 int main(int argc, char **argv) {
