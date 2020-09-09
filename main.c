@@ -1,25 +1,5 @@
 #include <stdio.h>
-
-///////////////////////////////////////////////////////////////////////////////////////
-/// Macros
-///////////////////////////////////////////////////////////////////////////////////////
-
-// 바이트 비트 수 
-#define NUM_OF_BIT 8
-
-// 함수 실행 결과에 대한 열거형
-enum FUNCTION_RESULT
-{
-	SUCCESS	=	1,	// 성공
-	FAIL	=	-1	// 실패
-};
-
-// 설정할 값의 최소, 최대값에 대한 열거형
-enum VALUE_RANGE
-{
-	MIN_VALUE =	0,	// 최소값
-	MAX_VALUE =	1	// 최대값
-};
+#include "main.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////
 /// Predefinitions of Local Static functions
@@ -27,17 +7,6 @@ enum VALUE_RANGE
 
 static int checkBitRange(int bit);
 static int checkValueRange(int value);
-
-///////////////////////////////////////////////////////////////////////////////////////
-/// Predefinitions of Local functions
-///////////////////////////////////////////////////////////////////////////////////////
-
-void setBit(unsigned char *flag, int bit, int value);
-int getBit(unsigned const char *flag, int bit);
-void toggleBit(unsigned char *flag, int bit);
-void splitWordToBytes(unsigned short value, unsigned char *high, unsigned char *low);
-void mergeBytesToWord(unsigned const char *high, unsigned const char *low, unsigned short *value);
-void printUnsigned16bitsNumberToBinary(unsigned short value);
 
 ///////////////////////////////////////////////////////////////////////////////////////
 /// Main function
@@ -49,7 +18,7 @@ void printUnsigned16bitsNumberToBinary(unsigned short value);
  * 8 비트 값의 특정 비트에 0 과 1 만 저장할 수 있다.
  * @return SUCCESS 반환
  */
-int main()
+/*int main()
 {
 	printf("[바이트 정수 관리 API 테스트 프로그램]\n\n");
 
@@ -194,6 +163,7 @@ int main()
 	printf("\n[프로그램 종료]\n");
 	return SUCCESS;
 }
+*/
 
 ///////////////////////////////////////////////////////////////////////////////////////
 /// Local functions
@@ -313,7 +283,7 @@ void mergeBytesToWord(unsigned const char *high, unsigned const char *low, unsig
 
 	*value = 0x0000;
 	*value = (unsigned short)(*high << 8);
-	*value |= (unsigned short)(*low);
+	*value = (unsigned short)(*value | (unsigned short)(*low));
 }
 
 /**
