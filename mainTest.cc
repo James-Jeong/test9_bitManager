@@ -7,6 +7,55 @@
 /// TEST Local Functions
 //////////////////////////////////////////////
 
+// checkBitRange Normal
+TEST(bitManagerTest, checkBitNormal) {
+	printf("\n[checkBitRange Normal test]\n");
+
+	int bit = 0, result = 0;
+
+	// 검사 항목 :  first, middle, final value
+
+	printf("0 이 1 바이트 범위에 속하는지 검사\n");
+	result = checkBitRange(bit);
+	printf("result : %d\n", result);
+	EXPECT_EQ(SUCCESS, result);
+
+	printf("\n3 이 1 바이트 범위에 속하는지 검사\n");
+	bit = 3;
+	result = checkBitRange(bit);
+	printf("result : %d\n", result);
+	EXPECT_EQ(SUCCESS, result);
+
+	printf("\n7 이 1 바이트 범위에 속하는지 검사\n");
+	bit = 7;
+	result = checkBitRange(bit);
+	printf("result : %d\n", result);
+	EXPECT_EQ(SUCCESS, result);
+	printf("\n");
+}
+
+// checkBitRange Abnormal
+TEST(bitManagerTest, checkBitAbnormal) {
+	printf("\n[checkBitRange Abnormal test]\n");
+
+	int bit = -1, result = 0;
+
+	// 검사 항목 :  (first - 1), (final + 1) value
+
+	printf("0 이 1 바이트 범위에 속하는지 검사\n");
+	result = checkBitRange(bit);
+	printf("result : %d\n", result);
+	EXPECT_EQ(FAIL, result);
+
+	printf("\n7 이 1 바이트 범위에 속하는지 검사\n");
+	bit = 8;
+	result = checkBitRange(bit);
+	printf("result : %d\n", result);
+	EXPECT_EQ(FAIL, result);
+	printf("\n");
+}
+
+
 // getBit Normal
 TEST(bitManagerTest, getBitNormal) {
 	printf("\n[getBit Normal test]\n");
@@ -28,6 +77,7 @@ TEST(bitManagerTest, getBitNormal) {
 	result = getBit(&flag, 3);
 	printf("getBit : %d\n", result);
 	EXPECT_EQ(1, result);
+	printf("\n");
 }
 
 // getBit Abnormal
@@ -40,13 +90,14 @@ TEST(bitManagerTest, getBitAbnormal) {
 	printf("\n10 번째 비트 값 읽기\n");
 	result = getBit(&flag, 10);
 	printf("getBit : %d\n", result);
-	EXPECT_EQ(-1, result);
+	EXPECT_EQ(FAIL, result);
 
 
 	printf("\n-5 번째 비트 값 읽기\n");
 	result = getBit(&flag, -5);
 	printf("getBit : %d\n", result);
-	EXPECT_EQ(-1, result);
+	EXPECT_EQ(FAIL, result);
+	printf("\n");
 }
 
 // toggleBit Normal
@@ -60,6 +111,7 @@ TEST(bitManagerTest, toggleBitNormal) {
 	toggleBit(&flag, 1);
 	printUnsigned16bitsNumberToBinary(flag);
 	EXPECT_EQ(0, getBit(&flag, 1));
+	printf("\n");
 }
 
 // toggleBit Abnormal
@@ -72,6 +124,7 @@ TEST(bitManagerTest, toggleBitAbnormal) {
 	printUnsigned16bitsNumberToBinary(flag);
 	toggleBit(&flag, -1);
 	printUnsigned16bitsNumberToBinary(flag);
+	printf("\n");
 }
 
 

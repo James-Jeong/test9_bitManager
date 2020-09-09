@@ -2,13 +2,6 @@
 #include "main.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////
-/// Predefinitions of Local Static functions
-///////////////////////////////////////////////////////////////////////////////////////
-
-static int checkBitRange(int bit);
-static int checkValueRange(int value);
-
-///////////////////////////////////////////////////////////////////////////////////////
 /// Main function
 ///////////////////////////////////////////////////////////////////////////////////////
 
@@ -318,7 +311,7 @@ void printUnsigned16bitsNumberToBinary(unsigned short value)
  * @param bit 검사할 비트값(입력)
  * @return 성공 시 SUCCESS, 실패 시 FAIL 반환
  */
-static int checkBitRange(int bit)
+int checkBitRange(int bit)
 {
 	// bit : 000 ~ 111 -> (1111 1111 1111 1111 1111 1111 1111 1000)(0xfffffff8(hex)) & 0000 ... 111 -> 7(Dec) -> 범위 통과
 	if(((unsigned int)bit & 0xfffffff8) != 0)
@@ -338,7 +331,7 @@ static int checkBitRange(int bit)
  * @param value 검사할 값(입력)
  * @return 성공 시 SUCCESS, 실패 시 FAIL 반환
  */
-static int checkValueRange(int value)
+int checkValueRange(int value)
 {
 	// value : 0 ~ 1 -> (1111 1111 1111 1111 1111 1111 1111 1110)(0xfffffffe(hex)) & 0000 ... 1 -> 1(Dec) -> 범위 통과
 	if(((unsigned int)value & 0xfffffffe) != 0)

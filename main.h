@@ -33,5 +33,13 @@ void splitWordToBytes(unsigned short value, unsigned char *high, unsigned char *
 void mergeBytesToWord(unsigned const char *high, unsigned const char *low, unsigned short *value);
 void printUnsigned16bitsNumberToBinary(unsigned short value);
 
+///////////////////////////////////////////////////////////////////////////////////////
+/// Local Static functions
+/// ! Unit test 를 위해 static 해제
+///////////////////////////////////////////////////////////////////////////////////////
+
+int checkBitRange(int bit);
+int checkValueRange(int value);
+
 #endif // #ifndef __MAIN_H__
 
